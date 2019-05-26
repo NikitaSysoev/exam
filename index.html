@@ -53,16 +53,19 @@
 
       const array = [1, 2, 3, 4, -1, -2, -3, 0, -0.34];
 
+      // 1  способ
+      // const onlyPositive = array.filter(item => item > 0);
+      // const onlyNegative = array.filter(item => item < 0);
+
+      // 2 способ
       const onlyPositive = [];
       const onlyNegative = [];
-
       function sortArrrays(array) {
         array.forEach(item => {
           if (item > 0) onlyPositive.push(item);
           if (item < 0) onlyNegative.push(item);
         });
       }
-
       sortArrrays(array);
 
       console.log("Положительные числа: ", onlyPositive);
