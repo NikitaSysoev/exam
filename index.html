@@ -35,17 +35,16 @@
         return false;
       }
 
-      const str = "sdf-gF; mort  wopee 23 3ы ва Sоцук  34sя _fs";
+      const str = "sdf2gF; mort  wopee 23 3s ва Sоцук  _s34s _fs";
 
       function isId(str) {
         const arr = str.splitStr(" ,.;").filter(item => {
           const strLower = item.toLowerCase();
           for (const [index, elem] of [...strLower].entries()) {
             if (index === 0 && !isEnglish(elem)) return false;
-            if (index > 0 && (!isEnglish(elem) && !isNumbers(elem)))
-              return false;
+            if (index > 0 && !isEnglish(elem) && !isNumbers(elem)) return false;
           }
-          return item;
+          return true;
         });
         return arr;
       }
