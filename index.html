@@ -17,7 +17,7 @@
           .filter(item => !!item);
       };
 
-      // метод определения только строчных английских букв с помощью юникода
+      // метод определения только строчных английских букв с помощью юникода и символа _
       function isEnglish(elem) {
         const x = elem.charCodeAt();
         if (x === 95 || (x >= 97 && x <= 122)) {
@@ -26,15 +26,25 @@
         return false;
       }
 
-      const str = "sdfgF; mort  wopee 23 3ы ва оцук  34sя _fs";
+      // метод определения только строчных английских букв с помощью юникода и символа -
+      function isNumbers(elem) {
+        const x = elem.charCodeAt();
+        if ((x >= 48 && x <= 57) || x === 45) {
+          return true;
+        }
+        return false;
+      }
+
+      const str = "sdf-gF; mort  wopee 23 3ы ва Sоцук  34sя _fs";
 
       function isId(str) {
         const arr = str.splitStr(" ,.;").filter(item => {
           const strLower = item.toLowerCase();
-          for (const elem of [...strLower]) {
-            if (!isEnglish(elem)) return false;
+          for (const [index, elem] of [...strLower].entries()) {
+            if (index === 0 && !isEnglish(elem)) return false;
+            if (index > 0 && (!isEnglish(elem) && !isNumbers(elem)))
+              return false;
           }
-
           return item;
         });
         return arr;
