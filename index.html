@@ -8,10 +8,28 @@
   </head>
   <body>
     <script>
-      const str = "sdfgF  mort  wopee 23 3ы ва оцук  34sя _fs";
+      // метод вытаскивания значений из строки по разделителям
+      String.prototype.splitStr = function(delimeter) {
+        return [...this]
+          .map(item => ([...delimeter].includes(item) ? " " : item))
+          .join("")
+          .split(" ")
+          .filter(item => !!item);
+      };
+
+      // метод определения только строчных английских букв с помощью юникода
+      function isEnglish(elem) {
+        const x = elem.charCodeAt();
+        if (x === 95 || (x >= 97 && x <= 122)) {
+          return true;
+        }
+        return false;
+      }
+
+      const str = "sdfgF; mort  wopee 23 3ы ва оцук  34sя _fs";
 
       function isId(str) {
-        const arr = str.split(" ").filter(item => {
+        const arr = str.splitStr(" ,.;").filter(item => {
           const strLower = item.toLowerCase();
           for (const elem of [...strLower]) {
             if (!isEnglish(elem)) return false;
@@ -23,15 +41,6 @@
       }
 
       console.log(isId(str));
-
-      // метод определения только строчных английских букв с помощью юникода
-      function isEnglish(elem) {
-        const x = elem.charCodeAt();
-        if (x === 95 || (x >= 97 && x <= 122)) {
-          return true;
-        }
-        return false;
-      }
 
       const array = [1, 2, 3, 4, -1, -2, -3, 0, -0.34];
 
