@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const str = "sdfgF  mort  wopee 23 3ы ва оцук  34sя _fs";
+
+      function isId(str) {
+        const arr = str.split(" ").filter(item => {
+          const strLower = item.toLowerCase();
+          for (const elem of [...strLower]) {
+            if (!isEnglish(elem)) return false;
+          }
+
+          return item;
+        });
+        return arr;
+      }
+
+      console.log(isId(str));
+
+      // метод определения только строчных английских букв с помощью юникода
+      function isEnglish(elem) {
+        const x = elem.charCodeAt();
+        if (x === 95 || (x >= 97 && x <= 122)) {
+          return true;
+        }
+        return false;
+      }
+
+      const array = [1, 2, 3, 4, -1, -2, -3, 0, -0.34];
+
+      const onlyPositive = [];
+      const onlyNegative = [];
+
+      function sortArrrays(array) {
+        array.forEach(item => {
+          if (item > 0) onlyPositive.push(item);
+          if (item < 0) onlyNegative.push(item);
+        });
+      }
+
+      sortArrrays(array);
+
+      console.log("Положительные числа: ", onlyPositive);
+      console.log("Отрицательыне числа: ", onlyNegative);
+    </script>
+  </body>
+</html>
